@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MAS.Lab_1
+namespace MAS.Lab_2
 {
     public static class Lab_1
     {

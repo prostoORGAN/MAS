@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static MAS.Lab_2.Lab_1;
+using static MAS.Lab_2.Lab_2;
 
 namespace MAS.Lab_2
 {
@@ -32,16 +32,11 @@ namespace MAS.Lab_2
             Color.Tomato
         };
 
-        private readonly int ImagePointSize = 3;
+        private readonly int ImagePointSize = 1;
         private readonly int KernalPointSize = 8;
 
         private ClassPoint[] images;
         private ClassPoint[] kernalImages;
-
-        private void trackBarClasses_Scroll(object sender, EventArgs e)
-        {
-            labelClasses.Text = trackBarClasses.Value.ToString();
-        }
 
         private void trackBarImages_Scroll(object sender, EventArgs e)
         {
@@ -51,19 +46,18 @@ namespace MAS.Lab_2
         private void btnGo_Click(object sender, EventArgs e)
         {
             images = new ClassPoint[trackBarImages.Value];
-            kernalImages = new ClassPoint[trackBarClasses.Value];
 
             ImagesRand(images, panel.Size.Width, panel.Size.Height);
-            ImagesRand(kernalImages, panel.Size.Width, panel.Size.Height);
 
             Graphics g = panel.CreateGraphics();
             g.Clear(Color.White);
-            DrawImages(images, kernalImages, g, ImagePointSize, KernalPointSize);
+            DrawImages(images, g, ImagePointSize);
 
-            K_means(kernalImages, images, trackBarClasses.Value);
+            Maximin(out kernalImages, images);
 
             g.Clear(Color.White);
-            DrawImages(images, kernalImages, g, ImagePointSize, KernalPointSize);
+            DrawImages(images, g, ImagePointSize);
+            DrawKernalImages(kernalImages, g, KernalPointSize);
         }
 
         private void panel_Paint(object sender, PaintEventArgs e)
@@ -73,27 +67,25 @@ namespace MAS.Lab_2
                 var g = e.Graphics;
 
                 g.Clear(Color.White);
-                DrawImages(images, kernalImages, g, ImagePointSize, KernalPointSize);
+                DrawImages(images, g, ImagePointSize);
             }
         }
 
-        private void DrawImages(ClassPoint[] images, ClassPoint[] kernals, Graphics g, int imageSize, int kernalSize)
+        private void DrawImages(ClassPoint[] images, Graphics g, int imageSize)
         {
-            Pen penKernal = new Pen(Color.Red, kernalSize);
-            for (int i = 0; i < kernals.Length; i++)
-            {
-                g.DrawRectangle(penKernal, kernals[i].X, kernals[i].Y, 1, 1);
-            }
-
             for (int i = 0; i < images.Length; i++)
             {
                 Pen pen = new Pen(colors[images[i].ClassNum], imageSize);
                 g.DrawRectangle(pen, images[i].X, images[i].Y, 1, 1);
             }
+        }
 
+        private void DrawKernalImages(ClassPoint[] kernals, Graphics g, int imageSize)
+        {
             for (int i = 0; i < kernals.Length; i++)
             {
-                g.DrawRectangle(penKernal, kernals[i].X, kernals[i].Y, 1, 1);
+                Pen pen = new Pen(Color.Red, imageSize);
+                g.DrawRectangle(pen, kernals[i].X, kernals[i].Y, 1, 1);
             }
         }
 

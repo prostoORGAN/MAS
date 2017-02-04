@@ -28,26 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.trackBarClasses = new System.Windows.Forms.TrackBar();
             this.trackBarImages = new System.Windows.Forms.TrackBar();
-            this.labelClasses = new System.Windows.Forms.Label();
             this.labelImages = new System.Windows.Forms.Label();
             this.panel = new System.Windows.Forms.Panel();
             this.btnGo = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarClasses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarImages)).BeginInit();
             this.SuspendLayout();
-            // 
-            // trackBarClasses
-            // 
-            this.trackBarClasses.Location = new System.Drawing.Point(724, 12);
-            this.trackBarClasses.Maximum = 20;
-            this.trackBarClasses.Minimum = 2;
-            this.trackBarClasses.Name = "trackBarClasses";
-            this.trackBarClasses.Size = new System.Drawing.Size(293, 45);
-            this.trackBarClasses.TabIndex = 0;
-            this.trackBarClasses.Value = 2;
-            this.trackBarClasses.Scroll += new System.EventHandler(this.trackBarClasses_Scroll);
             // 
             // trackBarImages
             // 
@@ -59,15 +45,6 @@
             this.trackBarImages.TabIndex = 1;
             this.trackBarImages.Value = 1000;
             this.trackBarImages.Scroll += new System.EventHandler(this.trackBarImages_Scroll);
-            // 
-            // labelClasses
-            // 
-            this.labelClasses.AutoSize = true;
-            this.labelClasses.Location = new System.Drawing.Point(1023, 24);
-            this.labelClasses.Name = "labelClasses";
-            this.labelClasses.Size = new System.Drawing.Size(13, 13);
-            this.labelClasses.TabIndex = 2;
-            this.labelClasses.Text = "2";
             // 
             // labelImages
             // 
@@ -83,13 +60,13 @@
             this.panel.BackColor = System.Drawing.SystemColors.Window;
             this.panel.Location = new System.Drawing.Point(12, 63);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(1112, 586);
+            this.panel.Size = new System.Drawing.Size(1460, 730);
             this.panel.TabIndex = 4;
             this.panel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
             // btnGo
             // 
-            this.btnGo.Location = new System.Drawing.Point(1049, 19);
+            this.btnGo.Location = new System.Drawing.Point(702, 19);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(75, 23);
             this.btnGo.TabIndex = 5;
@@ -101,16 +78,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1136, 661);
+            this.ClientSize = new System.Drawing.Size(1484, 805);
             this.Controls.Add(this.btnGo);
             this.Controls.Add(this.panel);
             this.Controls.Add(this.labelImages);
-            this.Controls.Add(this.labelClasses);
             this.Controls.Add(this.trackBarImages);
-            this.Controls.Add(this.trackBarClasses);
             this.Name = "Form1";
-            this.Text = "MAS.Lab_1";
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarClasses)).EndInit();
+            this.Text = "MAS.Lab_2";
             ((System.ComponentModel.ISupportInitialize)(this.trackBarImages)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -118,10 +92,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TrackBar trackBarClasses;
         private System.Windows.Forms.TrackBar trackBarImages;
-        private System.Windows.Forms.Label labelClasses;
         private System.Windows.Forms.Label labelImages;
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.Button btnGo;
