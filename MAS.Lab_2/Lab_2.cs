@@ -36,16 +36,18 @@ namespace MAS.Lab_2
             double newKernalDist = Euclidian(newKernal, kernalImages[newKernal.ClassNum]);
 
             double kernalDistsSum = 0;
+            int distsCount = 0;
 
             for (int i = 0; i < kernalImages.Length; i++)
             {
                 for (int j = i + 1; j < kernalImages.Length; j++)
                 {
                     kernalDistsSum += Euclidian(kernalImages[i], kernalImages[j]);
+                    distsCount++;
                 }
             }
 
-            double midAr = kernalDistsSum / kernalImages.Length;
+            double midAr = kernalDistsSum / distsCount;
 
             if (newKernalDist > midAr / 2)
             {
