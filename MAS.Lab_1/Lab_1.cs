@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,25 +52,40 @@ namespace MAS.Lab_2
             ClassPoint[] newKernals = new ClassPoint[classCount];
             double[] newClassesDist = new double[classCount];
 
-            foreach (var image_1 in images)
-            {
+            object lockObj = new object();
 
-                double distSum = 0;
+            var rangePartitioner = Partitioner.Create(0, images.Length);
 
-                foreach (var image_2 in images)
-                {
-                    if (image_2.ClassNum == image_1.ClassNum)
-                    {
-                        distSum += Euclidian(image_1, image_2);
-                    }
-                }
+            Parallel.ForEach(rangePartitioner,
+                             (range, loopState) =>
+                             {
+                                 for (var i = range.Item1; i < range.Item2; i++)
+                                 {
 
-                if (newKernals[image_1.ClassNum] == null || newClassesDist[image_1.ClassNum] > distSum)
-                {
-                    newKernals[image_1.ClassNum] = image_1;
-                    newClassesDist[image_1.ClassNum] = distSum;
-                }
-            }
+                                     double distSum = 0;
+
+                                     foreach (var image_2 in images)
+                                     {
+                                         if (image_2.ClassNum == images[i].ClassNum)
+                                         {
+                                             distSum += Euclidian(images[i], image_2);
+                                         }
+                                     }
+
+                                     if (newKernals[images[i].ClassNum] == null || newClassesDist[images[i].ClassNum] > distSum)
+                                     {
+                                         lock (lockObj)
+                                         {
+                                             if (newKernals[images[i].ClassNum] == null || newClassesDist[images[i].ClassNum] > distSum)
+                                             {
+                                                 newKernals[images[i].ClassNum] = images[i];
+                                                 newClassesDist[images[i].ClassNum] = distSum;
+                                             }
+
+                                         }
+                                     }
+                                 }
+                             });
 
             return newKernals;
         }

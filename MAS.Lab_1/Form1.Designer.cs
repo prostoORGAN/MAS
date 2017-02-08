@@ -34,6 +34,7 @@
             this.labelImages = new System.Windows.Forms.Label();
             this.panel = new System.Windows.Forms.Panel();
             this.btnGo = new System.Windows.Forms.Button();
+            this.lblElapse = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarClasses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarImages)).BeginInit();
             this.SuspendLayout();
@@ -83,7 +84,7 @@
             this.panel.BackColor = System.Drawing.SystemColors.Window;
             this.panel.Location = new System.Drawing.Point(12, 63);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(1112, 586);
+            this.panel.Size = new System.Drawing.Size(700, 700);
             this.panel.TabIndex = 4;
             this.panel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
             // 
@@ -97,11 +98,21 @@
             this.btnGo.UseVisualStyleBackColor = true;
             this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
             // 
+            // lblElapse
+            // 
+            this.lblElapse.AutoSize = true;
+            this.lblElapse.Location = new System.Drawing.Point(732, 74);
+            this.lblElapse.Name = "lblElapse";
+            this.lblElapse.Size = new System.Drawing.Size(60, 13);
+            this.lblElapse.TabIndex = 6;
+            this.lblElapse.Text = "elapse time";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1136, 661);
+            this.ClientSize = new System.Drawing.Size(1136, 768);
+            this.Controls.Add(this.lblElapse);
             this.Controls.Add(this.btnGo);
             this.Controls.Add(this.panel);
             this.Controls.Add(this.labelImages);
@@ -125,6 +136,7 @@
         private System.Windows.Forms.Label labelImages;
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.Button btnGo;
+        private System.Windows.Forms.Label lblElapse;
     }
 }
 

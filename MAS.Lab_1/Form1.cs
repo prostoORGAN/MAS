@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -50,6 +51,8 @@ namespace MAS.Lab_2
 
         private void btnGo_Click(object sender, EventArgs e)
         {
+
+
             images = new ClassPoint[trackBarImages.Value];
             kernalImages = new ClassPoint[trackBarClasses.Value];
 
@@ -60,7 +63,12 @@ namespace MAS.Lab_2
             g.Clear(Color.White);
             DrawImages(images, kernalImages, g, ImagePointSize, KernalPointSize);
 
+            var stopwatch = Stopwatch.StartNew();
+
             K_means(kernalImages, images, trackBarClasses.Value);
+
+            stopwatch.Stop();
+            lblElapse.Text = "Elapse time: " + stopwatch.Elapsed;
 
             g.Clear(Color.White);
             DrawImages(images, kernalImages, g, ImagePointSize, KernalPointSize);
